@@ -18,20 +18,39 @@ public class Validate {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        String pnr = "198107249289"; // test
+
+        String pnr = "19810724-9289"; // test
         System.out.println(validityCheck(pnr));
     }
 
+    /**
+     * Checks whether the input is a valid Personnummer, samordningsnummer or
+     * organisationsnummer. Checks luhn-alogoritm and date.
+     *
+     * @param String str personnummer, samordningsnummer or organisationsnummer.
+     * @return
+     */
     static boolean validityCheck(String str) {
         return luhnValid(str) && dateValid(str);
     }
 
+    /**
+     * Removes '+' and '-' from String
+     *
+     * @param String str personnummer, samordningsnummer or organisationsnummer.
+     * @return
+     */
     static String trim(String str) {
         str = str.replaceAll("[+,-]", "");
         return str;
     }
 
+    /**
+     * Checks lengths of String. If lenght == 2, removes first to index's
+     *
+     * @param String str personnummer, samordningsnummer or organisationsnummer.
+     * @return
+     */
     static String checkLength(String str) {
         if (str.length() == 12) {
             str = str.substring(2);
@@ -43,6 +62,12 @@ public class Validate {
         return str;
     }
 
+    /**
+     * Check if String only consists of digits
+     *
+     * @param String str personnummer, samordningsnummer or organisationsnummer.
+     * @return
+     */
     static String checkIfDigits(String str) {
         if (str.matches("\\d+")) {
             return str;
@@ -50,8 +75,13 @@ public class Validate {
         throw new IllegalArgumentException("String must contain only digits");
     }
 
+    /**
+     * Check luhn-algoritm
+     *
+     * @param String str personnummer, samordningsnummer or organisationsnummer.
+     * @return
+     */
     static boolean luhnValid(String str) {
-        
         str = trim(str);
         str = checkLength(str);
         str = checkIfDigits(str);
@@ -73,6 +103,12 @@ public class Validate {
         return (sum % 10 == 0);
     }
 
+    /**
+     * Check if date is valid
+     *
+     * @param String str personnummer, samordningsnummer or organisationsnummer.
+     * @return
+     */
     static boolean dateValid(String str) {
         String year;
         String month;
@@ -117,7 +153,6 @@ public class Validate {
             return false;
         }
         return true;
-
     }
 
 }
