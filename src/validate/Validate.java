@@ -18,9 +18,9 @@ public class Validate {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        String pnr = "198107249289";
-        System.out.println(dateValid(pnr));
+        
+        String pnr = "198107249289"; // test
+        System.out.println(validityCheck(pnr));
     }
 
     static boolean validityCheck(String str) {
@@ -51,11 +51,9 @@ public class Validate {
     }
 
     static boolean luhnValid(String str) {
-        System.out.println("1:    " + str);
+        
         str = trim(str);
-        System.out.println("2:    " + str);
         str = checkLength(str);
-        System.out.println("3:    " + str);
         str = checkIfDigits(str);
 
         int sum = 0;
