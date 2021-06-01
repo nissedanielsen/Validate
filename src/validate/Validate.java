@@ -87,19 +87,19 @@ public class Validate {
         str = checkIfDigits(str);
 
         int sum = 0;
-        boolean isLegit = false;
+        boolean alterate = false;
         for (int i = str.length() - 1; i >= 0; i--) {
             int n = Integer.parseInt(str.substring(i, i + 1));
-            if (isLegit) {
+            if (alterate) {
                 n *= 2;
                 if (n > 9) {
                     n = (n % 10) + 1;
                 }
             }
             sum += n;
-            isLegit = !isLegit;
+            alterate = !alterate;
         }
-        System.out.println("4:    " + str);
+
         return (sum % 10 == 0);
     }
 
